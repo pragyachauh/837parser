@@ -1,0 +1,1138 @@
+body {
+    background: linear-gradient(to bottom right, #016378,#E48B94);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.container {
+    background-color: rgba(248, 248, 248, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 24px;
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+h1 {
+    font-family: "Martian Mono", monospace;
+    margin: 0 0 24px 0;
+    color: rgba(230, 183, 197, 0.8);
+    text-align: center;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    width: 100%;
+}
+.file-type-label {
+    font-family: "Space Mono", monospace;
+    font-size: clamp(12px, 2.5vw, 14px);
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0 0 20px 0;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    text-transform: lowercase;
+}
+.toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 12px;
+    width: 100%;
+}
+.toggle input {
+    display: none;
+}
+.toggle-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.toggle-text {
+    font-family: "Roboto Mono", monospace;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+    min-width: 80px;
+}
+.toggle-text.active {
+    color: white;
+    font-weight: 600;
+}
+.toggle label {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 32px;
+    background-color: rgba(1, 99, 120, 0.8);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.toggle input:checked + label {
+    background-color: rgba(228, 139, 148, 0.8);
+}
+.toggle label:before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: white;
+    transition: transform 0.3s ease;
+    z-index: 3;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.toggle input:checked + label:before {
+    transform: translateX(28px);
+}
+.file-upload {
+    margin: 20px 0;
+    width: 100%;
+}
+.drag-drop-area {
+    border: 2px dashed rgba(255, 255, 255, 0.4);
+    border-radius: 12px;
+    padding: clamp(20px, 5vw, 32px) 16px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.02);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.drag-drop-area:hover {
+    border-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+.drag-drop-area.dragover {
+    border-color: rgba(228, 139, 148, 0.8);
+    background-color: rgba(228, 139, 148, 0.1);
+}
+.upload-icon {
+    width: clamp(36px, 8vw, 48px);
+    height: clamp(36px, 8vw, 48px);
+    margin-bottom: 12px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.drag-text {
+    font-family: "Space Mono", monospace;
+    font-size: clamp(14px, 3vw, 16px);
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0 0 6px 0;
+    font-weight: 400;
+}
+.or-text {
+    font-family: "Space Mono", monospace;
+    font-size: clamp(12px, 2.5vw, 14px);
+    color: rgba(255, 255, 255, 0.5);
+    margin: 6px 0 12px 0;
+    font-weight: 400;
+}
+.choose-file-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.8);
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: "Space Mono", monospace;
+    font-size: 14px;
+    font-weight: 400;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+.choose-file-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+}
+.preview {
+    margin-top: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 16px;
+    min-height: 60px;
+    background-color: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+    color: rgba(255, 255, 255, 0.8);
+    font-family: "Roboto Mono", monospace;
+    font-size: clamp(11px, 2.5vw, 13px);
+    width: 100%;
+    box-sizing: border-box;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.preview.fade-in {
+    opacity: 1;
+}
+
+.preview-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.preview-text {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.8);
+    font-family: "Roboto Mono", monospace;
+    font-size: clamp(11px, 2.5vw, 13px);
+    transition: opacity 0.5s ease-in-out;
+}
+
+.preview-text.fade-out {
+    opacity: 0;
+}
+
+.file-display {
+    width: 100%;
+    margin-top: 16px;
+}
+
+.files-display {
+    width: 100%;
+    margin-top: 16px;
+}
+
+.file-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    padding: 8px;
+    background-color: rgba(255, 255, 255, 0.03);
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    justify-content: space-between;
+    opacity: 1;
+    transition: opacity 0.2s ease, margin-bottom 0.2s ease, padding 0.2s ease;
+}
+
+.file-item.fade-out {
+    opacity: 0;
+    margin-bottom: 0;
+    padding: 4px 8px;
+}
+
+.file-item:last-child {
+    margin-bottom: 0;
+}
+
+.file-item .file-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+}
+
+.delete-file-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-file-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.delete-file-btn:hover svg {
+    fill: rgba(255, 100, 100, 0.8) !important;
+}
+
+.files-count {
+    font-family: "Roboto Mono", monospace;
+    font-size: clamp(10px, 2.2vw, 12px);
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.file-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    justify-content: center;
+}
+
+.file-icon {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 20px;
+}
+
+.file-name {
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.95);
+    font-size: clamp(12px, 2.8vw, 14px);
+    font-family: "Roboto Mono", monospace;
+    word-break: break-all;
+    text-align: center;
+}
+
+.progress-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #016378, #E48B94);
+    border-radius: 4px;
+    width: 0%;
+    transition: width 0.3s ease;
+    position: relative;
+}
+
+.progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.progress-text {
+    font-family: "Roboto Mono", monospace;
+    font-size: clamp(10px, 2.2vw, 12px);
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+}
+
+/* Parse Button Styles */
+.parse-button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.parse-button-container.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.parse-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.8);
+    font-family: "Space Mono", monospace;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    outline: none;
+    position: relative;
+    text-transform: lowercase;
+}
+
+.parse-btn:hover {
+    color: rgba(255, 255, 255, 1);
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateX(4px);
+}
+
+.parse-btn:hover svg {
+    fill: rgba(255, 255, 255, 1);
+    transform: translateX(4px);
+}
+
+.parse-btn:focus {
+    outline: none;
+}
+
+.parse-btn:active {
+    transform: translateX(2px);
+}
+
+.parse-btn svg {
+    transition: all 0.3s ease;
+}
+
+.parse-text {
+    transition: all 0.3s ease;
+}
+
+/* Download Button Styles */
+.download-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.download-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.8);
+    font-family: "Space Mono", monospace;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    outline: none;
+    position: relative;
+    text-transform: lowercase;
+}
+
+.download-btn:hover {
+    color: rgba(255, 255, 255, 1);
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-2px);
+}
+
+.download-btn:hover svg {
+    fill: rgba(255, 255, 255, 1);
+    transform: translateY(2px);
+}
+
+.download-btn:focus {
+    outline: none;
+}
+
+.download-btn:active {
+    transform: translateY(-1px);
+}
+
+.download-btn svg {
+    transition: all 0.3s ease;
+}
+
+.download-text {
+    transition: all 0.3s ease;
+}
+
+/* Table Controls and Filter */
+.table-controls {
+    display: flex;
+    justify-content: flex-start;
+    padding: 0 20px 15px 20px;
+    position: relative;
+    min-height: 40px;
+    margin-left: 40px;
+}
+
+.filter-control {
+    position: relative;
+    margin-left: 10px;
+}
+
+.filter-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: rgba(255, 255, 255, 0.9);
+    font-family: "Roboto Mono", monospace;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    width: 32px;
+    height: 32px;
+}
+
+.filter-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.filter-btn svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.2s ease;
+    fill: rgba(255, 255, 255, 0.9);
+}
+
+.filter-btn:hover svg {
+    transform: scale(1.1);
+    fill: rgba(255, 255, 255, 1);
+}
+
+.filter-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: -100px;
+    min-width: 200px;
+    max-width: 250px;
+    background: rgba(1, 99, 120, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(1, 99, 120, 0.3);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(1, 99, 120, 0.4);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+
+/* Ensure dropdown doesn't go off-screen on small viewports */
+@media (max-width: 600px) {
+    .filter-dropdown {
+        left: -60px;
+        min-width: 140px;
+    }
+}
+
+@media (max-width: 400px) {
+    .filter-dropdown {
+        left: -20px;
+        min-width: 120px;
+    }
+}
+
+.filter-dropdown.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.filter-section {
+    padding: 16px;
+}
+
+.filter-section h4 {
+    margin: 0 0 12px 0;
+    color: rgba(255, 255, 255, 0.9);
+    font-family: "Roboto Mono", monospace;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.filter-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.filter-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 6px 8px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+    font-family: "Roboto Mono", monospace;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.filter-option:hover {
+    background-color: rgba(1, 99, 120, 0.3);
+}
+
+.filter-option input[type="checkbox"] {
+    display: none;
+}
+
+.checkmark {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    position: relative;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.filter-option input[type="checkbox"]:checked + .checkmark {
+    background-color: #DFF5B4;
+    border-color: #DFF5B4;
+}
+
+.filter-option input[type="checkbox"]:checked + .checkmark::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='%231f1f1f'%3E%3Cpath d='M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.checkmark:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: scale(1.1);
+}
+
+.results-table-container {
+    width: 100%;
+    max-width: 100vw;
+    margin: 10px auto;
+    border-radius: 8px;
+    overflow-x: auto;
+    overflow-y: visible;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.results-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: "Roboto Mono", monospace;
+    font-size: clamp(10px, 2vw, 12px);
+    background: transparent;
+    table-layout: auto;
+    min-width: fit-content;
+    margin: 0 auto;
+}
+
+.table-header th {
+    padding: 12px 16px;
+    text-align: center;
+    font-weight: 700;
+    font-size: clamp(11px, 2.2vw, 14px);
+    color: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    white-space: nowrap;
+}
+
+.table-header th:last-child {
+    border-right: none;
+}
+
+.table-body tr {
+    transition: background-color 0.2s ease;
+}
+
+.table-body tr:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.table-body tr:nth-child(even):hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.table-body td {
+    padding: 10px 16px;
+    color: rgba(255, 255, 255, 0.85);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    white-space: nowrap;
+    font-size: clamp(10px, 1.9vw, 12px);
+    text-align: center;
+}
+
+.table-body td:last-child {
+    border-right: none;
+}
+
+.table-body tr:last-child td {
+    border-bottom: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1400px) {
+    .results-table-container {
+        width: 98%;
+        max-width: none;
+    }
+    
+    .table-header th {
+        padding: 10px 14px;
+        font-size: clamp(11px, 2.2vw, 13px);
+    }
+    
+    .table-body td {
+        padding: 10px 14px;
+        font-size: clamp(9px, 1.8vw, 11px);
+    }
+}
+
+@media (max-width: 1024px) {
+    .results-table-container {
+        width: 100%;
+        margin: 15px 0;
+        border-radius: 8px;
+    }
+    
+    .table-controls {
+        padding: 0 15px 12px 15px;
+        min-height: 35px;
+    }
+    
+    .filter-control {
+        margin-left: 8px;
+    }
+    
+    .filter-btn {
+        padding: 6px;
+        width: 28px;
+        height: 28px;
+    }
+    
+    .filter-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .filter-dropdown {
+        min-width: 180px;
+        left: -80px;
+    }
+    
+    .table-header th {
+        padding: 8px 10px;
+        font-size: clamp(10px, 2vw, 12px);
+    }
+    
+    .table-body td {
+        padding: 8px 10px;
+        font-size: clamp(8px, 1.6vw, 10px);
+    }
+    
+    .results-table th:nth-child(1),
+    .results-table td:nth-child(1) {
+        min-width: 120px;
+    }
+    
+    .results-table th:nth-child(4),
+    .results-table td:nth-child(4) {
+        min-width: 130px;
+    }
+    
+    .results-table th:nth-child(5),
+    .results-table td:nth-child(5) {
+        min-width: 150px;
+    }
+}
+
+@media (max-width: 768px) {
+    .results-table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .table-controls {
+        padding: 0 10px 10px 10px;
+        min-height: 30px;
+    }
+    
+    .filter-control {
+        margin-left: 6px;
+    }
+    
+    .filter-btn {
+        padding: 4px;
+        width: 24px;
+        height: 24px;
+    }
+    
+    .filter-btn svg {
+        width: 12px;
+        height: 12px;
+    }
+    
+    .filter-dropdown {
+        min-width: 160px;
+        left: -60px;
+    }
+    
+    .filter-section {
+        padding: 12px;
+    }
+    
+    .filter-section h4 {
+        font-size: 11px;
+        margin-bottom: 8px;
+    }
+    
+    .filter-option {
+        padding: 4px 6px;
+        font-size: 10px;
+        gap: 8px;
+    }
+    
+    .checkmark {
+        width: 14px;
+        height: 14px;
+    }
+    
+    .results-table {
+        min-width: 700px;
+    }
+    
+    .table-header th {
+        padding: 8px 12px;
+        font-size: 10px;
+    }
+    
+    .table-body td {
+        padding: 8px 12px;
+        font-size: 9px;
+    }
+}
+
+/* Amount column styling */
+.results-table th:nth-child(6),
+.results-table td:nth-child(6) {
+    text-align: right;
+    min-width: 100px;
+}
+
+/* Column width controls for better spacing */
+.results-table th:nth-child(1), /* Patient Name */
+.results-table td:nth-child(1) {
+    min-width: 120px;
+    max-width: 150px;
+}
+
+.results-table th:nth-child(2), /* Patient ID */
+.results-table td:nth-child(2) {
+    min-width: 80px;
+    max-width: 100px;
+}
+
+.results-table th:nth-child(3), /* Service Date */
+.results-table td:nth-child(3) {
+    min-width: 100px;
+    max-width: 120px;
+}
+
+.results-table th:nth-child(4), /* Provider */
+.results-table td:nth-child(4) {
+    min-width: 120px;
+    max-width: 150px;
+}
+
+.results-table th:nth-child(5), /* Diagnosis */
+.results-table td:nth-child(5) {
+    min-width: 150px;
+    max-width: 200px;
+}
+
+.results-table th:nth-child(6), /* Amount */
+.results-table td:nth-child(6) {
+    min-width: 80px;
+    max-width: 100px;
+    text-align: right;
+    white-space: nowrap;
+}
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+    
+    .container {
+        max-width: 100%;
+        padding: 20px;
+    }
+    
+    h1 {
+        font-size: clamp(1.3rem, 6vw, 2rem);
+        margin-bottom: 20px;
+    }
+    
+    /* Parse button responsive */
+    .parse-btn {
+        padding: 10px 16px;
+        font-size: 13px;
+        gap: 10px;
+    }
+    
+    .parse-btn svg {
+        height: 20px;
+        width: 20px;
+    }
+    
+    /* Download button responsive */
+    .download-btn {
+        padding: 10px 16px;
+        font-size: 13px;
+        gap: 10px;
+    }
+    
+    .download-btn svg {
+        height: 20px;
+        width: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+        justify-content: center;
+    }
+    
+    .container {
+        padding: 16px;
+        margin: 0 auto;
+        max-width: 100%;
+        min-width: 280px;
+    }
+    
+    h1 {
+        font-size: clamp(1.2rem, 8vw, 1.8rem);
+        margin-bottom: 16px;
+    }
+    
+    .file-type-label {
+        font-size: clamp(11px, 3vw, 13px);
+        margin-bottom: 16px;
+    }
+    
+    .toggle-wrapper {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .toggle-text {
+        min-width: auto;
+        font-size: 11px;
+    }
+    
+    .toggle label {
+        width: 50px;
+        height: 28px;
+    }
+    
+    .toggle label:before {
+        width: 24px;
+        height: 24px;
+        top: 2px;
+    }
+    
+    .toggle input:checked + label:before {
+        transform: translateX(22px);
+    }
+    
+    .drag-drop-area {
+        padding: clamp(16px, 4vw, 24px) 12px;
+    }
+    
+    .upload-icon {
+        font-size: clamp(32px, 10vw, 40px);
+    }
+    
+    .drag-text {
+        font-size: clamp(12px, 4vw, 14px);
+    }
+    
+    .choose-file-btn {
+        font-size: 12px;
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 320px) {
+    .container {
+        padding: 12px;
+        min-width: 260px;
+    }
+    
+    h1 {
+        font-size: 1.1rem;
+        margin-bottom: 12px;
+    }
+    
+    .file-type-label {
+        font-size: 10px;
+        margin-bottom: 12px;
+    }
+    
+    .toggle {
+        margin-bottom: 12px;
+    }
+    
+    .file-upload {
+        margin: 12px 0;
+    }
+}
+
+@media (max-height: 600px) {
+    body {
+        justify-content: center;
+        padding: 10px;
+    }
+    
+    h1 {
+        margin: 0 0 16px 0;
+        font-size: clamp(1.2rem, 4vw, 1.8rem);
+    }
+    
+    .container {
+        padding: 16px;
+    }
+    
+    .file-type-label {
+        margin: 0 0 12px 0;
+    }
+    
+    .toggle {
+        margin-bottom: 16px;
+    }
+    
+    .file-upload {
+        margin: 16px 0;
+    }
+    
+    .preview {
+        margin-top: 16px;
+    }
+    
+    .results-table-container {
+        margin-top: 16px;
+        border-radius: 8px;
+    }
+    
+    .table-header th {
+        padding: 8px 12px;
+        font-size: clamp(9px, 2.5vw, 11px);
+    }
+    
+    .table-body td {
+        padding: 8px 12px;
+        font-size: clamp(9px, 2.5vw, 11px);
+        min-width: 80px;
+    }
+    
+    .results-table th:nth-child(1),
+    .results-table td:nth-child(1) {
+        min-width: 100px;
+    }
+    
+    .results-table th:nth-child(6),
+    .results-table td:nth-child(6) {
+        min-width: 70px;
+    }
+}
+
+@media (max-height: 500px) {
+    h1 {
+        margin: 0 0 12px 0;
+        font-size: 1.3rem;
+    }
+    
+    .container {
+        padding: 12px;
+    }
+    
+    .file-type-label {
+        margin: 0 0 10px 0;
+        font-size: 11px;
+    }
+    
+    .toggle {
+        margin-bottom: 12px;
+    }
+    
+    .file-upload {
+        margin: 12px 0;
+    }
+    
+    .drag-drop-area {
+        padding: 16px 12px;
+    }
+    
+    .preview {
+        margin-top: 12px;
+        min-height: 40px;
+        padding: 12px;
+    }
+}
+
+/* Landscape orientation on mobile devices */
+@media (orientation: landscape) and (max-height: 500px) {
+    body {
+        justify-content: center;
+        padding: 5px;
+    }
+    
+    .container {
+        max-width: 600px;
+        padding: 12px 20px;
+    }
+    
+    h1 {
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+    }
+}
